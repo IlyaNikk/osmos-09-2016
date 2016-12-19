@@ -7,9 +7,7 @@ import ru.mail.park.model.Id;
 
 import java.util.List;
 
-/**
- * Created by Solovyev on 03/11/2016.
- */
+
 public class InitGame {
     @SuppressWarnings("NullableProblems")
     public static final class Request {
@@ -19,20 +17,6 @@ public class InitGame {
         private Id<GameObject> selfSquareId;
         @NotNull
         private List<ServerPlayerSnap> players;
-//        @NotNull
-//        private Map<Long, String> colors;                         // delete
-//        @NotNull
-//        private Map<Long, String> gunColors;                        // delete
-//        @NotNull
-//        private Map<Long, String> names;                        // delete
-
-//        public Map<Long, String> getNames() {
-//            return names;
-//        }
-//
-//        public void setNames(Map<Long, String> names) {
-//            this.names = names;
-//        }
 
         @NotNull
         public Long getSelf() {
@@ -50,22 +34,6 @@ public class InitGame {
         public void setPlayers(@NotNull List<ServerPlayerSnap> players) {
             this.players = players;
         }
-//        @NotNull
-//        public Map<Long, String> getColors() {
-//            return colors;
-//        }
-
-//        public void setColors(@NotNull Map<Long, String> colors) {
-//            this.colors = colors;
-//        }
-//        @NotNull
-//        public Map<Long, String> getGunColors() {
-//            return gunColors;
-//        }
-//
-//        public void setGunColors(@NotNull Map<Long, String> gunColors) {
-//            this.gunColors = gunColors;
-//        }
 
         public Id<GameObject> getSelfSquareId() {
             return selfSquareId;

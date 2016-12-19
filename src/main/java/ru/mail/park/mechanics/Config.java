@@ -1,8 +1,6 @@
 package ru.mail.park.mechanics;
 
-/**
- * Created by Solovyev on 03/11/2016.
- */
+
 public class Config {
     public static final double SQUARE_SPEED = 0.2f; //pix per ms
     public static final int PLAYGROUND_WIDTH = 640;

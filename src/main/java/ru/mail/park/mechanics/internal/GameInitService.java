@@ -20,9 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by Solovyev on 03/11/2016.
- */
+
 @Service
 public class GameInitService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServerSnapshotService.class);

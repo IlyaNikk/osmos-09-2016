@@ -8,39 +8,11 @@ import ru.mail.park.model.Id;
 
 import java.util.List;
 
-/**
- * Created by Solovyev on 04/11/2016.
- */
-
-
-
-//public class Square{
-//
-//    @NotNull
-//    public Integer x;
-//    @NotNull
-//    public Integer y;
-//    @NotNull
-//    private Id<GameObject> id;
-//
-//    public Square(){}
-//
-//    public Square(@JsonProperty("x") Integer x, @JsonProperty("y") Integer y) {
-//        this.x = x;
-//        this.y = y;
-//    }
-//
-//
-//
-//
-//}
-
 
 public class Square extends GameObject {
 
     public Square() {
         addPart(PositionPart.class, new PositionPart());
-//        addPart(MousePart.class, new MousePart());
     }
 
     @Override

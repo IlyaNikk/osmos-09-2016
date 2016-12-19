@@ -4,15 +4,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-/**
- * Created by Solovyev on 03/11/2016.
- */
+
 @SuppressWarnings({"NullableProblems", "unused"})
 public class ServerSnap {
 
     @NotNull
     public List<ServerPlayerSnap> players;
-//    private long serverFrameTime;
 
     @NotNull
     public List<ServerPlayerSnap> getPlayers() {
@@ -23,11 +20,4 @@ public class ServerSnap {
         this.players = players;
     }
 
-//    public long getServerFrameTime() {
-//        return serverFrameTime;
-//    }
-//
-//    public void setServerFrameTime(long serverFrameTime) {
-//        this.serverFrameTime = serverFrameTime;
-//    }
 }

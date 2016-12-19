@@ -2,9 +2,7 @@ package ru.mail.park.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/**
- * Created by Solovyev on 01/11/2016.
- */
+
 @SuppressWarnings("ClassNamingConvention")
 public class Id<T> {
     private final long id;

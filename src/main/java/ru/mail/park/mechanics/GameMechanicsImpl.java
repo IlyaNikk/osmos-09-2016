@@ -41,8 +41,6 @@ public class GameMechanicsImpl implements GameMechanics {
     @NotNull
     private GameSessionService gameSessionService;
 
-//    @NotNull
-//    private Set<Long> playingUsers = new HashSet<>();
 
     @NotNull
     private ConcurrentLinkedQueue<Long> waiters = new ConcurrentLinkedQueue<>();
@@ -122,7 +120,6 @@ public class GameMechanicsImpl implements GameMechanics {
         while (iterator.hasNext()) {
             final GameSession session = iterator.next();
             try {
-//                serverSnapshotService.sendSnapshotsFor(session, frameTime);
                 serverSnapshotService.sendSnapshotsFor(session);
             } catch (RuntimeException ex) {
                 LOGGER.error("Failed send snapshots, terminating the session", ex);

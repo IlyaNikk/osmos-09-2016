@@ -3,9 +3,6 @@ package ru.mail.park.mechanics.base;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by Solovyev on 03/11/2016.
- */
 @SuppressWarnings("PublicField")
 public class Coords {
 

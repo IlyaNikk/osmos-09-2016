@@ -1,8 +1,6 @@
 package ru.mail.park.mechanics.avatar;
 
-/**
- * Created by Solovyev on 01/11/2016.
- */
+
 @SuppressWarnings("unused")
 public class TimingPart {
     //All timings are in ms

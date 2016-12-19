@@ -4,9 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import ru.mail.park.mechanics.avatar.Square;
 import ru.mail.park.mechanics.game.Snap;
 
-/**
- * Created by Solovyev on 03/11/2016.
- */
+
 @SuppressWarnings({"NullableProblems", "unused"})
 public class ServerPlayerSnap {
     @NotNull

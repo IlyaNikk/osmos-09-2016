@@ -8,9 +8,6 @@ import ru.mail.park.model.UserProfile;
 import java.util.concurrent.atomic.AtomicLong;
 
 
-/**
- * @author k.solovyev
- */
 public class GameSession {
     private static final AtomicLong ID_GENERATOR = new AtomicLong(0);
     @NotNull

@@ -9,9 +9,7 @@ import ru.mail.park.mechanics.game.GameObject;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/**Movement of all game objects occures here. Collisions is comming...
- * Created by Solovyev on 06/11/2016.
- */
+
 @Service
 public class MovementService {
     private final Set<GameObject> objectsToMove = new LinkedHashSet<GameObject>();

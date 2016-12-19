@@ -148,7 +148,7 @@ public class ClientSnapshotsService {
 
         tempCoords.setX(x);
         tempCoords.setY(y);
-        
+
         return tempCoords;
     }
 

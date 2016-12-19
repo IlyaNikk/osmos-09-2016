@@ -30,28 +30,6 @@ public class ServerSnapshotService {
         this.remotePointService = remotePointService;
     }
 
-//    public void sendSnapshotsFor(@NotNull GameSession gameSession, long frameTime) {
-//        final Collection<GameUser> players = new ArrayList<>();
-//        players.add(gameSession.getFirst());
-//        players.add(gameSession.getSecond());
-//        final List<ServerPlayerSnap> playersSnaps = new ArrayList<>();
-//        for (GameUser player : players) {
-//            playersSnaps.add(player.generateSnap());
-//        }
-//        final ServerSnap snap = new ServerSnap();
-//
-//        snap.setPlayers(playersSnaps);
-//        snap.setServerFrameTime(frameTime);
-//        try {
-//            final Message message = new Message(ServerSnap.class.getName(), objectMapper.writeValueAsString(snap));
-//            for (GameUser player : players) {
-//                remotePointService.sendMessageToUser(player.getId(), message);
-//            }
-//        } catch (IOException ex) {
-//            throw new RuntimeException("Failed sending snapshot", ex);
-//        }
-//
-//    }
 
     public void sendSnapshotsFor(@NotNull GameSession gameSession) {
         final Collection<GameUser> players = new ArrayList<>();
@@ -64,7 +42,6 @@ public class ServerSnapshotService {
         final ServerSnap snap = new ServerSnap();
 
         snap.setPlayers(playersSnaps);
-//        snap.setServerFrameTime(frameTime);
         try {
             final Message message = new Message(ServerSnap.class.getName(), objectMapper.writeValueAsString(snap));
             for (GameUser player : players) {

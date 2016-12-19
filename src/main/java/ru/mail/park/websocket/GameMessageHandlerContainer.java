@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Solovyev on 06/04/16.
- */
+
 @Service
 public class GameMessageHandlerContainer implements MessageHandlerContainer {
     @SuppressWarnings("ConstantConditions")

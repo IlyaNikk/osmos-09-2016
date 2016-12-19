@@ -11,7 +11,6 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import ru.mail.park.model.Id;
 import ru.mail.park.model.UserProfile;
-import ru.mail.park.pinger.PingService;
 import ru.mail.park.service.AccountService;
 
 import javax.naming.AuthenticationException;
@@ -24,10 +23,10 @@ public class GameSocketHandler extends TextWebSocketHandler {
 
     @NotNull
     private AccountService accountService;
-//    @NotNull
-//    private PingService pingService;
+
     @NotNull
     private final MessageHandlerContainer messageHandlerContainer;
+
     @NotNull
     private final RemotePointService remotePointService;
 
@@ -37,10 +36,9 @@ public class GameSocketHandler extends TextWebSocketHandler {
     public HttpSession httpSession;
 
 
-    public GameSocketHandler(@NotNull MessageHandlerContainer messageHandlerContainer, @NotNull PingService pingService,
+    public GameSocketHandler(@NotNull MessageHandlerContainer messageHandlerContainer,
                              @NotNull AccountService authService, @NotNull RemotePointService remotePointService) {
         this.messageHandlerContainer = messageHandlerContainer;
-//        this.pingService = pingService;
         this.accountService = authService;
         this.remotePointService = remotePointService;
     }
@@ -55,7 +53,6 @@ public class GameSocketHandler extends TextWebSocketHandler {
         Long userId = id;
         remotePointService.registerUser(userId, webSocketSession);
 
-//        pingService.refreshPing(userId);
     }
 
     @Override
@@ -81,7 +78,6 @@ public class GameSocketHandler extends TextWebSocketHandler {
             return;
         }
         try {
-            //noinspection ConstantConditions
             messageHandlerContainer.handle(message, userProfile.getId());
         } catch (HandleException e) {
             LOGGER.error("Can't handle message of type " + message.getType() + " with content: " + message.getContent(), e);

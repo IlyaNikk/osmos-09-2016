@@ -5,9 +5,7 @@ import ru.mail.park.mechanics.base.Coords;
 import ru.mail.park.mechanics.game.GamePart;
 import ru.mail.park.mechanics.game.Snap;
 
-/**
- * Created by Solovyev on 06/11/2016.
- */
+
 public class MousePart implements GamePart {
     @NotNull
     private Coords mouse;

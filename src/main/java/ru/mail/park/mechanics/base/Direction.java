@@ -2,9 +2,7 @@ package ru.mail.park.mechanics.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Created by Solovyev on 04/11/2016.
- */
+
 public class Direction {
     private final double angle;
 
