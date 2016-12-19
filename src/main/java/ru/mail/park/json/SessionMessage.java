@@ -1,27 +1,27 @@
 package ru.mail.park.json;
 
 public class SessionMessage {
-    private String sessionid;
-    private Long userid;
+    private String sessionId;
+    private Long userId;
 
     public SessionMessage(String sessionid, Long userid) {
-        this.sessionid = sessionid;
-        this.userid = userid;
+        this.sessionId = sessionid;
+        this.userId = userid;
     }
 
     public String getSessionId() {
-        return sessionid;
+        return sessionId;
     }
 
     public Long getUserId() {
-        return userid;
+        return userId;
     }
 
     public void setSessionId(String sessionid) {
-        this.sessionid = sessionid;
+        this.sessionId = sessionid;
     }
 
     public void setUserId(Long userid) {
-        this.userid = userid;
+        this.userId = userid;
     }
 }

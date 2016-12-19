@@ -151,4 +151,13 @@ public class RegistrationController {
             .body(new Response<>("info","You are log out!"));
   }
 
+  @RequestMapping(value = "/api/auth", method = RequestMethod.GET)
+  public ResponseEntity isauth(){
+    if(isNull(httpSession.getAttribute("userId"))){
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\":\"Access allowed only for registered users\"}");
+    }
+
+    return ResponseEntity.ok().body("User logged in");
+  }
+
 }
