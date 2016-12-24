@@ -35,6 +35,7 @@ public class ServerSnapshotService {
         final Collection<GameUser> players = new ArrayList<>();
         players.add(gameSession.getFirst());
         players.add(gameSession.getSecond());
+//        players.add(gameSession.getThird());
         final List<ServerPlayerSnap> playersSnaps = new ArrayList<>();
         for (GameUser player : players) {
             playersSnaps.add(player.generateSnap());

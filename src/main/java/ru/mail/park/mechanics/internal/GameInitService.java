@@ -44,10 +44,13 @@ public class GameInitService {
 
         gameSession.getFirst().getSquare().claimPart(PositionPart.class).setBody(new Coords(0.0f, 0.0f));
         gameSession.getSecond().getSquare().claimPart((PositionPart.class)).setBody(new Coords(500.0f, 500.0f));
-
+        gameSession.getFirst().getSquare().claimPart((PositionPart.class)).setRadius(30);
+        gameSession.getFirst().getSquare().claimPart((PositionPart.class)).setTemp_radius(30);
+//        gameSession.getThird().getSquare().claimPart((PositionPart.class)).setBody((new Coords(-500.0f, 500.0f)));
         final Collection<GameUser> players = new ArrayList<>();
         players.add(gameSession.getFirst());
         players.add(gameSession.getSecond());
+//        players.add(gameSession.getThird());
         for (GameUser player : players) {
             final InitGame.Request initMessage = createInitMessageFor(gameSession, player.getId());    // Какой InitGame !!??
             try {
@@ -63,10 +66,13 @@ public class GameInitService {
         }
     }
 
+
     @SuppressWarnings("TooBroadScope")
     private InitGame.Request createInitMessageFor(@NotNull GameSession gameSession, @NotNull Long userId) {
         final GameUser self = gameSession.getSelf(userId);
         final InitGame.Request initGameMessage = new InitGame.Request();
+
+//        gameSession.initGameStatic();
 
         final List<ServerPlayerSnap> playerSnaps = new ArrayList<>();                        // delete
 //        final Map<Long, String> names = new HashMap<>();                        // delete
@@ -81,6 +87,7 @@ public class GameInitService {
         final Collection<GameUser> players = new ArrayList<>();
         players.add(gameSession.getFirst());
         players.add(gameSession.getSecond());
+//        players.add(gameSession.getThird());
         for (GameUser player : players) {
             playerSnaps.add(player.generateSnap());              //!!!!!!!!!!!!!!!!!  generateSnap
 //            names.put(player.getId(), player.getUserProfile().getLogin());                        // delete
@@ -88,6 +95,8 @@ public class GameInitService {
 
         initGameMessage.setSelf(userId);
         initGameMessage.setSelfSquareId(gameSession.getSelf(userId).getSquare().getId());   //????
+        initGameMessage.setGameStatics(gameSession.getStatic());
+        initGameMessage.setGameStatics(gameSession.getStatic());
 //        initGameMessage.setColors(colors);                        // delete
 //        initGameMessage.setGunColors(gunColors);                        // delete
 //        initGameMessage.setNames(names);                        // delete

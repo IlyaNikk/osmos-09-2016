@@ -151,6 +151,7 @@ public class RegistrationController {
             .body(new Response<>("info","You are log out!"));
   }
 
+
   @RequestMapping(value = "/api/auth", method = RequestMethod.GET)
   public ResponseEntity isauth(){
     if(isNull(httpSession.getAttribute("userId"))){

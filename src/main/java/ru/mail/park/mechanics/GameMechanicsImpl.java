@@ -76,7 +76,9 @@ public class GameMechanicsImpl implements GameMechanics {
     private void tryStartGames() {    // Найти пару игроков и если пара есть начать игру.
         final Set<UserProfile> matchedPlayers = new LinkedHashSet<>();
 
-        while (waiters.size() >= 2 || waiters.size() >= 1 && matchedPlayers.size() >= 1) {
+//        while (waiters.size() >= 3 || waiters.size() >= 2 && matchedPlayers.size() >= 1 || waiters.size() >= 1 &&
+//                matchedPlayers.size() >= 2) {
+        while (waiters.size() >= 2 || waiters.size() >= 1 && matchedPlayers.size() >= 1){
             final Long candidate = waiters.poll();
             if (!insureCandidate(candidate)) {
                 continue;
@@ -84,6 +86,7 @@ public class GameMechanicsImpl implements GameMechanics {
             matchedPlayers.add(accountService.getUserById(candidate));
             if(matchedPlayers.size() == 2) {
                 final Iterator<UserProfile> iterator = matchedPlayers.iterator();
+//                gameSessionService.startGame(iterator.next(), iterator.next(), iterator.next());
                 gameSessionService.startGame(iterator.next(), iterator.next());
                 matchedPlayers.clear();
             }

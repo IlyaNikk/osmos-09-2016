@@ -49,9 +49,11 @@ public class GameSessionService {
         final boolean exists = gameSessions.remove(gameSession);
         usersMap.remove(gameSession.getFirst().getId());
         usersMap.remove(gameSession.getSecond().getId());
+//        usersMap.remove(gameSession.getThird().getId());
         if (exists) {
             remotePointService.cutDownConnection(gameSession.getFirst().getId(), CloseStatus.SERVER_ERROR);
             remotePointService.cutDownConnection(gameSession.getSecond().getId(), CloseStatus.SERVER_ERROR);
+//            remotePointService.cutDownConnection(gameSession.getThird().getId(), CloseStatus.SERVER_ERROR);
         }
     }
 
@@ -60,6 +62,7 @@ public class GameSessionService {
         gameSessions.add(gameSession);
         usersMap.put(gameSession.getFirst().getId(), gameSession);
         usersMap.put(gameSession.getSecond().getId(), gameSession);
+//        usersMap.put(gameSession.getThird().getId(), gameSession);
         gameInitService.initGameFor(gameSession);
         return gameSession;
     }

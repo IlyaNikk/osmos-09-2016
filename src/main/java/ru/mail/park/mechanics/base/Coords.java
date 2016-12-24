@@ -11,8 +11,27 @@ public class Coords {
         this.y = y;
     }
 
-    public final double x;
-    public final double y;
+    public double x;   //final ?
+    public double y;
+
+    public Coords(){}
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getX() {
+
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
 
     @NotNull
     public Coords add(@NotNull Coords addition) {

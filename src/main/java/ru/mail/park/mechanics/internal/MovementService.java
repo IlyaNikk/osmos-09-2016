@@ -19,6 +19,7 @@ public class MovementService {
     }
 
     public void executeMoves() {
+
         for (GameObject gameObject : objectsToMove) {
             @Nullable final PositionPart part = gameObject.getPart(PositionPart.class);
             if (part == null) {

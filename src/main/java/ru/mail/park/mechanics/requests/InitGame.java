@@ -1,6 +1,7 @@
 package ru.mail.park.mechanics.requests;
 
 import org.jetbrains.annotations.NotNull;
+import ru.mail.park.mechanics.avatar.GameStatic;
 import ru.mail.park.mechanics.base.ServerPlayerSnap;
 import ru.mail.park.mechanics.game.GameObject;
 import ru.mail.park.model.Id;
@@ -17,6 +18,9 @@ public class InitGame {
         private Id<GameObject> selfSquareId;
         @NotNull
         private List<ServerPlayerSnap> players;
+
+        @NotNull
+        private GameStatic[] gameStatics;
 
         @NotNull
         public Long getSelf() {
@@ -41,6 +45,14 @@ public class InitGame {
 
         public void setSelfSquareId(Id<GameObject> selfSquareId) {
             this.selfSquareId = selfSquareId;
+        }
+
+        public GameStatic[] getGameStatics() {
+            return gameStatics;
+        }
+
+        public void setGameStatics(GameStatic[] gameStatics) {
+            this.gameStatics = gameStatics;
         }
     }
 

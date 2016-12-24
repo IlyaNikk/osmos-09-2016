@@ -1,10 +1,13 @@
 package ru.mail.park.mechanics;
 
 import org.jetbrains.annotations.NotNull;
+import ru.mail.park.mechanics.avatar.GameStatic;
 import ru.mail.park.mechanics.avatar.GameUser;
+import ru.mail.park.mechanics.base.Coords;
 import ru.mail.park.model.Id;
 import ru.mail.park.model.UserProfile;
 
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 
@@ -16,11 +19,25 @@ public class GameSession {
     private final GameUser first;
     @NotNull
     private final GameUser second;
+    @NotNull
+    private final GameStatic [] gameStatics;
+//    private final GameUser third;
 
     public GameSession(@NotNull UserProfile user1, @NotNull UserProfile user2) {
         this.sessionId = Id.of(ID_GENERATOR.getAndIncrement());
         this.first = new GameUser(user1);
         this.second =  new GameUser(user2);
+
+        this.gameStatics = new GameStatic[20];
+
+        final Random random = new Random();
+
+        for(int i=0; i<20; i++){
+            this.gameStatics[i] = new GameStatic(new Coords((double)random.nextInt(1000), (double)random.nextInt(1000)*(-1)), random.nextInt(10)+15, 0);
+//            this.gameStatics[i].setRadius(random.nextInt(10)+15);
+//            this.gameStatics[i].setCoords(new Coords((double)random.nextInt(1000), (double)random.nextInt(-1000)));
+        }
+//        this.third = new GameUser(user3);
     }
 
     @NotNull
@@ -42,6 +59,9 @@ public class GameSession {
         if (second.getUserProfile().getId().equals(userId)) {
             return second;
         }
+//        if (third.getUserProfile().getId().equals(userId)) {
+//            return second;
+//        }
         throw new IllegalArgumentException("Request self for game but user not participate it");
     }
 
@@ -54,6 +74,24 @@ public class GameSession {
     public GameUser getSecond() {
         return second;
     }
+
+    @NotNull
+    public GameStatic getStatic(int id) {return gameStatics[id]; }
+
+    @NotNull
+    public GameStatic [] getStatic() {return gameStatics ; }
+
+//    @NotNull
+//    public void initGameStatic(){
+//        for(int i=0; i<20; i++){
+//            this.gameStatics[i].setRadius(random.nextInt(10)+15);
+//            this.gameStatics[i].setCoords(new Coords((double)random.nextInt(1000), (double)random.nextInt(-1000)));
+//        }
+//    }
+
+
+//    @NotNull
+//    public GameUser getThird() { return third; }
 
     @Override
     public boolean equals(Object o) {
