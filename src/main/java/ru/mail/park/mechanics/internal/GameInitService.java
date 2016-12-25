@@ -35,22 +35,16 @@ public class GameInitService {
     }
 
     public void initGameFor(@NotNull GameSession gameSession) {
-//        gameSession.getFirst().getSquare().claimPart(PositionPart.class).setBody(new Coords(0.0f, 0.0f));
-//        gameSession.getSecond().getSquare().claimPart(PositionPart.class).setBody(
-//                new Coords(Config.PLAYGROUND_WIDTH - Config.SQUARE_SIZE,
-//                        Config.PLAYGROUND_HEIGHT - Config.SQUARE_SIZE)
-//        );
-
 
         gameSession.getFirst().getSquare().claimPart(PositionPart.class).setBody(new Coords(0.0f, 0.0f));
         gameSession.getSecond().getSquare().claimPart((PositionPart.class)).setBody(new Coords(500.0f, 500.0f));
         gameSession.getFirst().getSquare().claimPart((PositionPart.class)).setRadius(30);
         gameSession.getFirst().getSquare().claimPart((PositionPart.class)).setTemp_radius(30);
-//        gameSession.getThird().getSquare().claimPart((PositionPart.class)).setBody((new Coords(-500.0f, 500.0f)));
+
         final Collection<GameUser> players = new ArrayList<>();
         players.add(gameSession.getFirst());
         players.add(gameSession.getSecond());
-//        players.add(gameSession.getThird());
+
         for (GameUser player : players) {
             final InitGame.Request initMessage = createInitMessageFor(gameSession, player.getId());    // Какой InitGame !!??
             try {

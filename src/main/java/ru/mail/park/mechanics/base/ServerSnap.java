@@ -1,12 +1,12 @@
 package ru.mail.park.mechanics.base;
 
-import org.jetbrains.annotations.NotNull;
-
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
 @SuppressWarnings({"NullableProblems", "unused"})
 public class ServerSnap {
+
 
     @NotNull
     public List<ServerPlayerSnap> players;

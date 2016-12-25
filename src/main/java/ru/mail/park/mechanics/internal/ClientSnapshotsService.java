@@ -124,12 +124,6 @@ public class ClientSnapshotsService {
             positionPart2.setRadius(positionPart2.getTemp_radius());
         }
 
-//        positionPart1.setRadius(radius1);
-//        positionPart2.setRadius(radius2);
-//        positionPart1.setTemp_radius(radius1);
-//        positionPart2.setTemp_radius(radius2);
-
-
         positionPart1.setTouch(touch1);
         positionPart2.setTouch(touch2);
 
@@ -140,7 +134,7 @@ public class ClientSnapshotsService {
 
 
 
-    private void touchFood(@NotNull GameUser gameUser, GameStatic gameStatic[]){
+    private void touchFood(@NotNull GameUser gameUser, List<GameStatic> gameStatic){
 
         PositionPart positionPart = gameUser.getSquare().claimPart(PositionPart.class);
 
@@ -152,20 +146,25 @@ public class ClientSnapshotsService {
 
 
         for(int i=0; i<20; i++){
-            double lenRad = gameStatic[i].getRadius() + radius;
-            double lenCor = Math.sqrt(Math.pow((coords.getX() - gameStatic[i].getCoords().getX()), 2) + Math.pow((coords.getY() - gameStatic[i].getCoords().getY()), 2));
+            double lenRad = gameStatic.get(i).getRadius() + radius;
+            double lenCor = Math.sqrt(Math.pow((coords.getX() - gameStatic.get(i).getCoords().getX()), 2) + Math.pow((coords.getY() - gameStatic.get(i).getCoords().getY()), 2));
             if(lenRad >= lenCor){
-                    radius += 0.5;
-                    gameStatic[i].setRadius(gameStatic[i].getRadius() - 0.5);
-                    touch = 1;
-                    gameStatic[i].setTouch(-1);
+                radius += 0.5;
+                double x = gameStatic.get(i).getRadius();
+                gameStatic.get(i).setRadius(gameStatic.get(i).getRadius() - 0.5);
+                touch = 1;
+                gameStatic.get(i).setTouch(-1);
+                break;
             }
             else{
                 touch = 0;
-                gameStatic[i].setRadius(gameStatic[i].getRadius() - 0.5);
+//                gameStatic.get(i).setRadius(gameStatic.get(i).getRadius() - 0.5);
+                gameStatic.get(i).setTouch(0);
             }
         }
 
+        positionPart.setRadius(radius);
+        positionPart.setTouch(touch);
         movementService.registerObjectToMove(gameUser.getSquare());
 
     }
@@ -310,15 +309,6 @@ public class ClientSnapshotsService {
         if(flag.flag == 2){
             vy *= -1;
         }
-
-//        if(vx > 10)
-//            vx-=3;
-//        if(vx < -10)
-//            vx-=3;
-//        if(vy > 10)
-//            vy-=3;
-//        if(vy < -10)
-//            vy+=3;
 
         speeds.setVx(vx);
         speeds.setVy(vy);

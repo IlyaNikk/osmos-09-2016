@@ -7,6 +7,7 @@ import ru.mail.park.mechanics.GameSession;
 import ru.mail.park.mechanics.avatar.GameUser;
 import ru.mail.park.mechanics.base.ServerPlayerSnap;
 import ru.mail.park.mechanics.base.ServerSnap;
+import ru.mail.park.mechanics.base.ServerSnapStatic;
 import ru.mail.park.websocket.Message;
 import ru.mail.park.websocket.RemotePointService;
 
@@ -41,12 +42,16 @@ public class ServerSnapshotService {
             playersSnaps.add(player.generateSnap());
         }
         final ServerSnap snap = new ServerSnap();
+        final ServerSnapStatic snapStatic = new ServerSnapStatic();
 
         snap.setPlayers(playersSnaps);
+        snapStatic.setStatics(gameSession.getStatic());
         try {
             final Message message = new Message(ServerSnap.class.getName(), objectMapper.writeValueAsString(snap));
+            final Message message2 = new Message(ServerSnapStatic.class.getName(), objectMapper.writeValueAsString(snapStatic));
             for (GameUser player : players) {
                 remotePointService.sendMessageToUser(player.getId(), message);
+                remotePointService.sendMessageToUser(player.getId(), message2);
             }
         } catch (IOException ex) {
             throw new RuntimeException("Failed sending snapshot", ex);

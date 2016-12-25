@@ -7,6 +7,9 @@ import ru.mail.park.mechanics.base.Coords;
 import ru.mail.park.model.Id;
 import ru.mail.park.model.UserProfile;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -20,7 +23,7 @@ public class GameSession {
     @NotNull
     private final GameUser second;
     @NotNull
-    private final GameStatic [] gameStatics;
+    private List<GameStatic> gameStatics;
 //    private final GameUser third;
 
     public GameSession(@NotNull UserProfile user1, @NotNull UserProfile user2) {
@@ -28,12 +31,12 @@ public class GameSession {
         this.first = new GameUser(user1);
         this.second =  new GameUser(user2);
 
-        this.gameStatics = new GameStatic[20];
+        this.gameStatics = new LinkedList<>();
 
         final Random random = new Random();
 
         for(int i=0; i<20; i++){
-            this.gameStatics[i] = new GameStatic(new Coords((double)random.nextInt(1000), (double)random.nextInt(1000)*(-1)), random.nextInt(10)+15, 0);
+            this.gameStatics.add(new GameStatic(i, new Coords((double)random.nextInt(1000), (double)random.nextInt(1000)*(-1)), random.nextInt(10)+15, 0));
 //            this.gameStatics[i].setRadius(random.nextInt(10)+15);
 //            this.gameStatics[i].setCoords(new Coords((double)random.nextInt(1000), (double)random.nextInt(-1000)));
         }
@@ -76,10 +79,10 @@ public class GameSession {
     }
 
     @NotNull
-    public GameStatic getStatic(int id) {return gameStatics[id]; }
+    public GameStatic getStatic(int id) {return gameStatics.get(id); }
 
     @NotNull
-    public GameStatic [] getStatic() {return gameStatics ; }
+    public List<GameStatic> getStatic() {return gameStatics; }
 
 //    @NotNull
 //    public void initGameStatic(){

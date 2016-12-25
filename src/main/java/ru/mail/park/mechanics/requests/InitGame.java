@@ -20,7 +20,7 @@ public class InitGame {
         private List<ServerPlayerSnap> players;
 
         @NotNull
-        private GameStatic[] gameStatics;
+        private List<GameStatic> gameStatics;
 
         @NotNull
         public Long getSelf() {
@@ -47,11 +47,11 @@ public class InitGame {
             this.selfSquareId = selfSquareId;
         }
 
-        public GameStatic[] getGameStatics() {
+        public List<GameStatic> getGameStatics() {
             return gameStatics;
         }
 
-        public void setGameStatics(GameStatic[] gameStatics) {
+        public void setGameStatics(List<GameStatic> gameStatics) {
             this.gameStatics = gameStatics;
         }
     }
