@@ -1,1 +1,17 @@
-/target/
+#maven
+target
+
+#idea
+.idea
+*.iml
+
+#eclipse
+.classpath
+.project
+.settings
+
+#gedit
+*~
+
+#Yet another editor
+.DS_Store

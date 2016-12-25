@@ -1,32 +1,29 @@
 package ru.mail.park;
 
+import org.eclipse.jetty.websocket.api.WebSocketBehavior;
+import org.eclipse.jetty.websocket.api.WebSocketPolicy;
+import org.eclipse.jetty.websocket.server.WebSocketServerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.web.socket.handler.PerConnectionWebSocketHandler;
+import org.springframework.web.socket.server.jetty.JettyRequestUpgradeStrategy;
+import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
+import ru.mail.park.websocket.GameSocketHandler;
+import java.util.concurrent.TimeUnit;
 
-import static springfox.documentation.builders.PathSelectors.regex;
 
-/**
- * Created by SergeyCheremisin on 13/09/16.
- */
+@SpringBootApplication
+public class Application {
 
-    @EnableSwagger2
-    @SpringBootApplication
-    public class Application {
+    public static final long IDLE_TIMEOUT_MS = TimeUnit.MINUTES.toMillis(1);
+    public static final int BUFFER_SIZE_BYTES = 8192;
+
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(new Object[]{WebSocketConfig.class, Application.class}, args);
     }
 
     @Bean
@@ -35,18 +32,28 @@ import static springfox.documentation.builders.PathSelectors.regex;
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods("DELETE","POST", "GET")
+                        .allowedMethods("DELETE", "POST", "GET")
                         .allowedOrigins("*");
             }
         };
     }
 
+
     @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
+    public DefaultHandshakeHandler handshakeHandler() {
+        final WebSocketPolicy policy = new WebSocketPolicy(WebSocketBehavior.SERVER);
+        policy.setInputBufferSize(BUFFER_SIZE_BYTES);
+        policy.setIdleTimeout(IDLE_TIMEOUT_MS);
+
+        return new DefaultHandshakeHandler(
+                new JettyRequestUpgradeStrategy(new WebSocketServerFactory(policy)));
     }
+
+    @Bean
+    public org.springframework.web.socket.WebSocketHandler gameWebSocketHandler() {
+        return new PerConnectionWebSocketHandler(GameSocketHandler.class);
+    }
+
+
+
 }
